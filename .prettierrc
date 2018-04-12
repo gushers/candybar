@@ -6,5 +6,6 @@
     "jsxBracketSameLine": false,
     "parser": "babylon",
     "semi": true,
-    "requirePragma": false
+    "requirePragma": false,
+    "tabWidth": 4
 }
