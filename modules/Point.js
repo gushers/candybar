@@ -28,9 +28,9 @@ class Point {
         return this;
     }
 
-    movePointAtAngle(point, angle, distance) {
-        this.x = point.x + Math.cos(angle) * distance;
-        this.y = point.y + Math.sin(angle) * distance;
+    moveAtAngle(angle, distance) {
+        this.x += Math.cos(angle) * distance;
+        this.y += Math.sin(angle) * distance;
         return this;
     }
 
