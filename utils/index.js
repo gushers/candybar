@@ -20,9 +20,15 @@ export function doBoxesIntersect(a, b) {
 
 export function scaleBetween(initialVal, minAllow, maxAllow, min, max) {
     // scaleBetween(250, -1, 1, 0, 500) => 0
-    return (maxAllow - minAllow) * (initialVal - min) / (max - min) + minAllow;
+    return (
+        ((maxAllow - minAllow) * (initialVal - min)) / (max - min) + minAllow
+    );
 }
 
 export function cycle(value, total) {
-    return (value % total + total) % total;
+    return ((value % total) + total) % total;
+}
+
+export function clamp(number, min, max) {
+    return Math.max(min, Math.min(number, max));
 }
