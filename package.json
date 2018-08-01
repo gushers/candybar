@@ -1,21 +1,23 @@
 {
-  "name": "canvas-starter",
-  "version": "1.0.0",
+  "name": "candybar",
+  "version": "0.0.0-alpha1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "",
+    "build": "rollup -c --dir dist"
   },
   "author": "J Scott Smith",
   "license": "ISC",
   "dependencies": {
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "node-sass": "^4.7.2"
-  }
+    "babel-preset-env": "^1.7.0",
+    "rollup": "^0.63.5",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "devDependencies": {}
 }
