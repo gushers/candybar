@@ -1,3 +1,5 @@
+import { lerp } from '../utils';
+
 //*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
 // Point
 //*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
@@ -10,6 +12,10 @@ class Point {
 
     get position() {
         return [this.x, this.y];
+    }
+
+    clone() {
+        return new Point(this.x, this.y);
     }
 
     delta(point) {
@@ -25,6 +31,12 @@ class Point {
     moveTo(x, y) {
         this.x = x;
         this.y = y;
+        return this;
+    }
+
+    move(x, y) {
+        this.x += x;
+        this.y += y;
         return this;
     }
 
@@ -52,6 +64,23 @@ class Point {
         const y = point.y - this.y;
         const x = point.x - this.x;
         return Math.atan2(y, x) * (180 / Math.PI);
+    }
+
+    rotate(origin, radians) {
+        // rotate the point around a given origin point
+        const cos = Math.cos(radians);
+        const sin = Math.sin(radians);
+        this.x =
+            cos * (this.x - origin.x) + sin * (this.y - origin.y) + origin.x;
+        this.y =
+            cos * (this.y - origin.y) - sin * (this.x - origin.x) + origin.y;
+        return this;
+    }
+
+    lerp(destination, amount) {
+        this.x = lerp(this.x, destination.x, amount);
+        this.y = lerp(this.y, destination.y, amount);
+        return this;
     }
 }
 
