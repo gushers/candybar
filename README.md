@@ -1,6 +1,6 @@
-# Starter for Canvas Projects
+# Candybar 🍫
 
-Quick starter for building demos and pens in canvas. Uses parcel to bundle and transpile code.
+Starter for building things with `<canvas>`. Uses parcel to bundle and transpile code.
 
 ## Start
 
