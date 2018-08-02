@@ -1,6 +1,6 @@
 import Background from './modules/Background';
 import Bounds from './modules/Bounds';
-import Canvas from './modules/Background';
+import Canvas from './modules/Canvas';
 import Cursor from './modules/Cursor';
 import Entity from './modules/Entity';
 import Point from './modules/Point';
