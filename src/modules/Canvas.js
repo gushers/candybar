@@ -5,9 +5,11 @@ import Bounds from './Bounds';
 //*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
 
 class Canvas {
-    constructor({ canvas, entities = [], pointer }) {
+    constructor({ canvas, container, entities = [], pointer }) {
         // setup a canvas
         this.canvas = canvas;
+        this.container = container;
+
         this.dpr = window.devicePixelRatio || 1;
         this.ctx = canvas.getContext('2d');
         this.ctx.scale(this.dpr, this.dpr);
@@ -32,13 +34,22 @@ class Canvas {
     }
 
     setCanvasSize = () => {
-        const { innerWidth: w, innerHeight: h } = window;
+        let { innerWidth: w, innerHeight: h } = window;
+
+        if (this.container) {
+            w = this.container.clientWidth;
+            h = this.container.clientHeight;
+        }
+
         const w2 = w * this.dpr;
         const h2 = h * this.dpr;
         this.canvas.width = w2;
         this.canvas.height = h2;
         this.canvas.style.width = w + 'px';
         this.canvas.style.height = h + 'px';
+        this.canvas.style.position = 'absolute';
+        this.canvas.style.top = 0;
+        this.canvas.style.left = 0;
         this.bounds = new Bounds(0, 0, w2, h2);
     };
 
