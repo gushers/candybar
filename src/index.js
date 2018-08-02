@@ -6,6 +6,7 @@ import Entity from './modules/Entity';
 import Point from './modules/Point';
 import Pointer from './modules/Pointer';
 import Velocity from './modules/Velocity';
+import * as utils from './modules/utils';
 
 export default {
     Background,
@@ -16,4 +17,5 @@ export default {
     Point,
     Pointer,
     Velocity,
+    utils,
 };

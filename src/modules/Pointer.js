@@ -11,6 +11,10 @@ class Pointer {
         this.addListeners();
     }
 
+    delta() {
+        return this.position.delta(this.lastPosition);
+    }
+
     addListeners() {
         ['mousemove', 'touchmove'].forEach((event, touch) => {
             window.addEventListener(
