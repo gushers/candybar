@@ -72,6 +72,7 @@ class Canvas {
 
     start() {
         this.paused = false;
+        this.render();
     }
 
     // Main loop
