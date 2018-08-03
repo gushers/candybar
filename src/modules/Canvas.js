@@ -1,13 +1,15 @@
 import Bounds from './Bounds';
+import Pointer from './Pointer';
 
 //*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
 // Canvas
 //*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
 
 class Canvas {
-    constructor({ canvas, container, entities = [], pointer }) {
+    constructor({ canvas, container, entities = [], hasPointer }) {
         this.canvas = canvas;
         this.container = container;
+        this.hasPointer = hasPointer;
 
         this.dpr = window.devicePixelRatio || 1;
         this.ctx = canvas.getContext('2d');
@@ -19,27 +21,52 @@ class Canvas {
         // entities to be drawn on the canvas
         this.entities = entities;
 
-        // track mouse/touch movement
-        this.pointer = pointer || null;
-
         // setup and run
         this.setCanvasSize();
+        this.setContainerRect();
+        this.setPointer();
         this.setupListeners();
         this.render();
     }
 
     setupListeners() {
-        window.addEventListener('resize', this.setCanvasSize);
+        window.addEventListener('resize', () => {
+            this.setCanvasSize();
+            this.setPointer();
+            this.setContainerRect();
+        });
     }
 
-    setCanvasSize = () => {
+    setContainerRect() {
+        if (!this.container) return;
+        this.containerRect = this.container.getBoundingClientRect();
+    }
+
+    setPointer() {
+        // track mouse/touch movement
+        const scrollX = window.pageXOffset;
+        const scrollY = window.pageYOffset;
+        this.pointer =
+            this.hasPointer &&
+            new Pointer({
+                containerRect: this.containerRect,
+                scrollPosition: {
+                    scrollX,
+                    scrollY,
+                },
+            });
+    }
+
+    setCanvasSize() {
         let { innerWidth: w, innerHeight: h } = window;
 
+        // sized to the container if available
         if (this.container) {
             w = this.container.clientWidth;
             h = this.container.clientHeight;
         }
 
+        // otherwise, fullscreen
         const w2 = w * this.dpr;
         const h2 = h * this.dpr;
         this.canvas.width = w2;
@@ -50,7 +77,7 @@ class Canvas {
         this.canvas.style.top = 0;
         this.canvas.style.left = 0;
         this.bounds = new Bounds(0, 0, w2, h2);
-    };
+    }
 
     addEntity = newEntity => {
         this.entities = [...this.entities, newEntity];
