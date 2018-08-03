@@ -4,5 +4,12 @@
       "modules": false
     }]
   ],
-  "plugins": ["external-helpers", "transform-class-properties", "transform-object-rest-spread"]
+  "env": {
+    "demo": {
+      "plugins": ["transform-class-properties", "transform-object-rest-spread"]
+    },
+    "production": {
+      "plugins": ["external-helpers", "transform-class-properties", "transform-object-rest-spread"]
+    }
+  }
 }
