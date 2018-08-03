@@ -6,7 +6,6 @@ import Bounds from './Bounds';
 
 class Canvas {
     constructor({ canvas, container, entities = [], pointer }) {
-        // setup a canvas
         this.canvas = canvas;
         this.container = container;
 
@@ -67,20 +66,25 @@ class Canvas {
         this.entities = this.entities.filter(({ dead = false }) => !dead);
     }
 
-    render = () => {
-        // Main loop
+    stop() {
+        this.paused = true;
+    }
 
+    start() {
+        this.paused = false;
+    }
+
+    // Main loop
+    render = () => {
         // Draw and Update items here.
         this.entities.forEach(({ draw, update }) => {
             draw(this);
             update(this);
         });
 
-        // Cleanup "dead" entities
-        this.removeDead();
-
         ++this.tick;
-        window.requestAnimationFrame(this.render);
+
+        !this.paused && window.requestAnimationFrame(this.render);
     };
 }
 
