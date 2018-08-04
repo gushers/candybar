@@ -102,8 +102,8 @@ class Canvas {
     render = () => {
         // Draw and Update items here.
         this.entities.forEach(({ draw, update }) => {
-            draw(this);
-            update(this);
+            draw && draw(this);
+            update && update(this);
         });
 
         ++this.tick;
