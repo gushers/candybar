@@ -9,6 +9,7 @@
       "plugins": ["transform-class-properties", "transform-object-rest-spread"]
     },
     "production": {
+      "presets": ["flow"],
       "plugins": ["external-helpers", "transform-class-properties", "transform-object-rest-spread"]
     }
   }

@@ -1,16 +1,21 @@
-export function getRandomFloat(min, max) {
+/* @flow */
+
+export function getRandomFloat(min: number, max: number): number {
     return Math.random() * (max - min) + min;
 }
 
-export function getRandomInt(min, max) {
+export function getRandomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function lerp(start, end, amount) {
+export function lerp(start: number, end: number, amount: number): number {
     return (1 - amount) * start + amount * end;
 }
 
-export function doBoxesIntersect(a, b) {
+export function doBoxesIntersect(
+    a: { x: number, y: number, w: number, h: number },
+    b: { x: number, y: number, w: number, h: number }
+): boolean {
     // AABB axis-aligned bounding boxes
     return (
         Math.abs(a.x - b.x) * 2 < a.w + b.w &&
@@ -18,17 +23,23 @@ export function doBoxesIntersect(a, b) {
     );
 }
 
-export function scaleBetween(initialVal, minAllow, maxAllow, min, max) {
+export function scaleBetween(
+    initialVal: number,
+    minAllow: number,
+    maxAllow: number,
+    min: number,
+    max: number
+): number {
     // scaleBetween(250, -1, 1, 0, 500) => 0
     return (
         ((maxAllow - minAllow) * (initialVal - min)) / (max - min) + minAllow
     );
 }
 
-export function cycle(value, total) {
+export function cycle(value: number, total: number): number {
     return ((value % total) + total) % total;
 }
 
-export function clamp(number, min, max) {
+export function clamp(number: number, min: number, max: number): number {
     return Math.max(min, Math.min(number, max));
 }
