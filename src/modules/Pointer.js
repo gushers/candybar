@@ -1,9 +1,5 @@
 import Point from './Point';
 
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
-// Pointer
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
-
 class Pointer {
     constructor({ containerRect, scrollPosition }) {
         // cached getBoundingRect call

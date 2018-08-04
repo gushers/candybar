@@ -1,9 +1,5 @@
 import Entity from './Entity';
 
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
-// Cursor
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
-
 class Cursor extends Entity {
     constructor(radius) {
         super();

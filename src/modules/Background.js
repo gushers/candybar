@@ -1,9 +1,5 @@
 import Entity from './Entity';
 
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
-// Background
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
-
 class Background extends Entity {
     drawText({ ctx, canvas }) {
         const ms = Math.max(canvas.width, canvas.height);

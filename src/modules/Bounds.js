@@ -1,9 +1,5 @@
 import Point from './Point';
 
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
-// Bounds
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
-
 class Bounds {
     constructor(x, y, w, h) {
         this.x = x;

@@ -1,10 +1,6 @@
 import Bounds from './Bounds';
 import Pointer from './Pointer';
 
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡/
-// Canvas
-//*‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
-
 class Canvas {
     constructor({ canvas, container, entities = [], hasPointer }) {
         this.canvas = canvas;
