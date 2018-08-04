@@ -1,6 +1,6 @@
 # Candybar 🍫
 
-A simple, `<canvas>` rendering engine. And by "engine" I mean about as advanced as a broken scooter 🛴
+A simple `<canvas>` rendering engine and collection of classes and utils. And by "engine" I mean about as advanced as a broken scooter 🛴
 
 🚨 **This is an alpha release**
 
