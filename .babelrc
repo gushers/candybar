@@ -6,6 +6,7 @@
   ],
   "env": {
     "demo": {
+      "presets": ["flow"],
       "plugins": ["transform-class-properties", "transform-object-rest-spread"]
     },
     "production": {

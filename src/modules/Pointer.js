@@ -60,12 +60,12 @@ class Pointer {
                         const sy = window.pageYOffset - scrollY;
 
                         // apply element offset from viewport
-                        x -= offX;
-                        y -= offY;
+                        x = x - offX * this.dpr;
+                        y = y - offY * this.dpr;
 
                         // apply page scroll offset
-                        x += sx;
-                        y += sy;
+                        x = x + sx * this.dpr;
+                        y = y + sy * this.dpr;
                     }
 
                     // set the final positon
