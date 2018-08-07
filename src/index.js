@@ -9,10 +9,8 @@ import Velocity from './modules/Velocity';
 import * as utils from './utils';
 
 export default {
-    Background,
     Bounds,
     Canvas,
-    Cursor,
     Entity,
     Point,
     Pointer,
