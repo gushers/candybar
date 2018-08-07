@@ -1,7 +1,7 @@
 import Canvas from '../src/modules/Canvas';
-import Background from '../src/modules/Background';
-import Cursor from '../src/modules/Cursor';
 import Pointer from '../src/modules/Pointer';
+import Background from './modules/Background';
+import Cursor from './modules/Cursor';
 
 // Kick off
 const canvas = new Canvas({

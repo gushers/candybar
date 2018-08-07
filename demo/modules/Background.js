@@ -1,4 +1,4 @@
-import Entity from './Entity';
+import Entity from '../../src/modules/Entity';
 
 class Background extends Entity {
     drawText({ ctx, canvas }) {
@@ -28,6 +28,10 @@ class Background extends Entity {
     draw = context => {
         this.drawGradient(context);
         this.drawText(context);
+    };
+
+    resize = (context, event) => {
+        console.log(context, event);
     };
 }
 

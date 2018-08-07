@@ -1,4 +1,4 @@
-import Entity from './Entity';
+import Entity from '../../src/modules/Entity';
 
 class Cursor extends Entity {
     constructor(radius) {
