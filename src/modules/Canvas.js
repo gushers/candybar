@@ -26,10 +26,11 @@ class Canvas {
     }
 
     setupListeners() {
-        window.addEventListener('resize', () => {
+        window.addEventListener('resize', event => {
             this.setCanvasSize();
             this.setPointer();
             this.setContainerRect();
+            this.resizeEntities(event);
         });
     }
 
@@ -73,6 +74,12 @@ class Canvas {
         this.canvas.style.top = 0;
         this.canvas.style.left = 0;
         this.bounds = new Bounds(0, 0, w2, h2);
+    }
+
+    resizeEntities(event) {
+        this.entities.forEach(({ resize }) => {
+            resize && resize(this, event);
+        });
     }
 
     addEntity = newEntity => {
