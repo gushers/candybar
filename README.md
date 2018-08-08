@@ -59,6 +59,12 @@ class MyThing {
         this.x = 0;
         this.y = 0;
     }
+
+    setup = ({ canvas }) => {
+        // setup will be called once before the first draw and is provided the class context
+        this.w = canvas.width / 10;
+    };
+
     draw = ({ ctx }) => {
         // draw with canvas API through the provided context
         ctx.fillRect(this.x, this.y, 100, 100);
@@ -69,6 +75,11 @@ class MyThing {
         const { x, y } = this.pointer.position;
         this.x = x;
         this.y = y;
+    };
+
+    resize = (context, event) => {
+        // handle resize events.
+        this.w = context.canvas.width / 10;
     };
 }
 ```

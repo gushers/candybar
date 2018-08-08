@@ -1,14 +1,18 @@
 import Entity from '../../src/modules/Entity';
 
 class Background extends Entity {
-    drawText({ ctx, canvas }) {
+    setup = ({ canvas }) => {
+        console.log('setup');
         const ms = Math.max(canvas.width, canvas.height);
         const size = ms / 15;
+        this.size = size;
+    };
 
+    drawText({ ctx, canvas }) {
         const copy = 'Canvas Starter';
         const x = canvas.width / 2;
-        const y = canvas.height / 2 + size / 3;
-        ctx.font = `700 italic ${size}px futura, sans-serif`;
+        const y = canvas.height / 2 + this.size / 3;
+        ctx.font = `700 italic ${this.size}px futura, sans-serif`;
         ctx.textAlign = 'center';
         ctx.fillStyle = '#fff';
         ctx.fillText(copy, x, y);
@@ -31,7 +35,10 @@ class Background extends Entity {
     };
 
     resize = (context, event) => {
-        console.log(context, event);
+        console.log('resize');
+        const ms = Math.max(canvas.width, canvas.height);
+        const size = ms / 15;
+        this.size = size;
     };
 }
 

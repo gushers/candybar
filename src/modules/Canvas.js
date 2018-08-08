@@ -22,6 +22,8 @@ class Canvas {
         this.setContainerRect();
         this.setPointer();
         this.setupListeners();
+
+        this.setupEntities();
         this.render();
     }
 
@@ -76,6 +78,12 @@ class Canvas {
         this.bounds = new Bounds(0, 0, w2, h2);
     }
 
+    setupEntities() {
+        this.entities.forEach(({ setup }) => {
+            setup && setup(this);
+        });
+    }
+
     resizeEntities(event) {
         this.entities.forEach(({ resize }) => {
             resize && resize(this, event);
@@ -84,6 +92,9 @@ class Canvas {
 
     addEntity = newEntity => {
         this.entities = [...this.entities, newEntity];
+        // call setup since this is new
+        newEntity.setup && newEntity.setup(this);
+
         return this.entities.length - 1;
     };
 
