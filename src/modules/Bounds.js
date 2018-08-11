@@ -1,5 +1,5 @@
 import Point from './Point';
-import { doBoxesIntersect } from './utils';
+import { doBoxesIntersect } from '../utils';
 
 class Bounds {
     constructor(x, y, w, h) {
