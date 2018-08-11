@@ -1,4 +1,5 @@
 import Point from './Point';
+import { doBoxesIntersect } from './utils';
 
 class Bounds {
     constructor(x, y, w, h) {
@@ -6,14 +7,18 @@ class Bounds {
         this.y = y;
         this.w = w;
         this.h = h;
-        const hw = w / 2;
-        const hh = h / 2;
+        this.hw = w / 2;
+        this.hh = h / 2;
         this.center = new Point(hw, hh);
         this.position = new Point(x, y);
     }
 
     get params() {
         return [this.x, this.y, this.w, this.h];
+    }
+
+    intersectWith(bounds) {
+        return doBoxesIntersect(this, bounds);
     }
 
     offsetOuter(offset) {
