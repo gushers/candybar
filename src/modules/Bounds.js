@@ -9,7 +9,7 @@ class Bounds {
         this.h = h;
         this.hw = w / 2;
         this.hh = h / 2;
-        this.center = new Point(hw, hh);
+        this.center = new Point(this.hw, this.hh);
         this.position = new Point(x, y);
     }
 
