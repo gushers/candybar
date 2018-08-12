@@ -116,6 +116,10 @@ class Canvas {
         this.render();
     }
 
+    clearCanvas({ ctx, bounds }) {
+        ctx.clearRect(...bounds.params);
+    }
+
     // Main loop
     render = () => {
         // Draw and Update items here.
