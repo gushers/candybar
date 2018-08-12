@@ -1,4 +1,4 @@
-# Candybar 🍫
+# Candybar 🍫 [![Build Status](https://travis-ci.org/gushers/candybar.svg?branch=master)](https://travis-ci.org/gushers/candybar)
 
 A simple `<canvas>` rendering engine and collection of classes and utils. And by "engine" I mean about as advanced as a broken scooter 🛴
 
