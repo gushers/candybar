@@ -80,6 +80,7 @@ describe('Bounds class', () => {
         const bounds6 = new Bounds(0, 0, 1500, 1000);
         const bounds7 = new Bounds(500, 510, 10, 10);
         const bounds8 = new Bounds(1500, 1000, 10, 10);
+        const bounds9 = new Bounds(95, 95, 10, 10);
 
         expect(bounds1.intersectsWith(bounds2)).toEqual(true);
         expect(bounds1.intersectsWith(bounds3)).toEqual(false);
@@ -87,5 +88,6 @@ describe('Bounds class', () => {
         expect(bounds5.intersectsWith(bounds1)).toEqual(true);
         expect(bounds6.intersectsWith(bounds7)).toEqual(true);
         expect(bounds6.intersectsWith(bounds8)).toEqual(false);
+        expect(bounds1.intersectsWith(bounds9)).toEqual(true);
     });
 });
