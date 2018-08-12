@@ -5,12 +5,17 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "",
+    "test": "NODE_ENV='test' jest",
+    "test:watch": "NODE_ENV='test' jest --watch",
     "build": "NODE_ENV='production' rollup -c --dir dist",
     "docs": "documentation build src/index.js -o docs/docs.md -f md",
     "prepublishOnly": "npm run build"
   },
   "author": "J Scott Smith",
   "license": "ISC",
+  "jest": {
+    "verbose": true
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -21,6 +26,7 @@
     "babel-preset-flow": "^6.23.0",
     "documentation": "8.1.0",
     "flow-bin": "^0.78.0",
+    "jest": "^23.5.0",
     "rollup": "^0.63.5",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-node-resolve": "^3.3.0"
