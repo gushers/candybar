@@ -28,11 +28,15 @@ export function doBoxesIntersect(
     a: { x: number, y: number, w: number, h: number },
     b: { x: number, y: number, w: number, h: number }
 ): boolean {
-    // AABB axis-aligned bounding boxes
-    return (
-        Math.abs(a.x - b.x) * 2 < a.w + b.w &&
-        Math.abs(a.y - b.y) * 2 < a.h + b.h
-    );
+    if (
+        a.x < b.x + b.w &&
+        a.x + a.w > b.x &&
+        a.y < b.y + b.h &&
+        a.h + a.y > b.y
+    ) {
+        return true;
+    }
+    return false;
 }
 
 /**
