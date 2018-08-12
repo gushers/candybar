@@ -2,6 +2,7 @@ import Bounds from './modules/Bounds';
 import Canvas from './modules/Canvas';
 import Entity from './modules/Entity';
 import Point from './modules/Point';
+import PointPhysics from './modules/PointPhysics';
 import Pointer from './modules/Pointer';
 import Segment from './modules/Segment';
 import Velocity from './modules/Velocity';
@@ -12,6 +13,7 @@ export default {
     Canvas,
     Entity,
     Point,
+    PointPhysics,
     Pointer,
     Segment,
     Velocity,
