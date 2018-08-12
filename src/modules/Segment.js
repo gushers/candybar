@@ -16,4 +16,10 @@ export default class Segment {
         const [dx, dy] = tl.delta(br);
         this.bounds = new Bounds(tl.x, tl.y, dx, dy);
     }
+
+    move(...args) {
+        this.p1 = this.p1.move(...args);
+        this.p2 = this.p2.move(...args);
+        this.bounds.move(...args);
+    }
 }
