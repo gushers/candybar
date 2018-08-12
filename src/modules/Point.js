@@ -15,12 +15,11 @@ class Point {
     }
 
     delta(point) {
-        return [this.x - point.x, this.y - point.y];
+        return [point.x - this.x, point.y - this.y];
     }
 
     distance(point) {
-        const dx = point.x - this.x;
-        const dy = point.y - this.y;
+        const [dx, dy] = this.delta(point);
         return Math.sqrt(dx * dx + dy * dy);
     }
 
@@ -39,12 +38,6 @@ class Point {
     moveAtAngle(angle, distance) {
         this.x += Math.cos(angle) * distance;
         this.y += Math.sin(angle) * distance;
-        return this;
-    }
-
-    applyVelocity(velocity) {
-        this.x += velocity.vx;
-        this.y += velocity.vy;
         return this;
     }
 
