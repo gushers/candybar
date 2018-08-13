@@ -2,10 +2,17 @@ import Bounds from './Bounds';
 import Pointer from './Pointer';
 
 class Canvas {
-    constructor({ canvas, container, entities = [], hasPointer }) {
+    constructor({
+        canvas,
+        container,
+        entities = [],
+        hasPointer,
+        pauseInBackground,
+    }) {
         this.canvas = canvas;
         this.container = container;
         this.hasPointer = hasPointer;
+        this.pauseInBackground = pauseInBackground;
 
         this.dpr = window.devicePixelRatio || 1;
         this.ctx = canvas.getContext('2d');
@@ -34,6 +41,11 @@ class Canvas {
             this.setContainerRect();
             this.resizeEntities(event);
         });
+
+        if (this.pauseInBackground) {
+            window.addEventListener('blur', this.stop);
+            window.addEventListener('focus', this.start);
+        }
     }
 
     setContainerRect() {
@@ -107,14 +119,14 @@ class Canvas {
         this.entities = this.entities.filter(({ dead = false }) => !dead);
     }
 
-    stop() {
+    stop = () => {
         this.paused = true;
-    }
+    };
 
-    start() {
+    start = () => {
         this.paused = false;
         this.render();
-    }
+    };
 
     clearCanvas({ ctx, bounds }) {
         ctx.clearRect(...bounds.params);

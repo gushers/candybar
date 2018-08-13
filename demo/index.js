@@ -8,5 +8,6 @@ const canvas = new Canvas({
     canvas: document.getElementById('canvas'),
     container: document.getElementById('container'),
     hasPointer: true,
+    pauseInBackground: true,
     entities: [new Background(), new Cursor(10)],
 });
