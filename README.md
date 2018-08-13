@@ -1,6 +1,6 @@
 # Candybar 🍫 [![Build Status](https://travis-ci.org/gushers/candybar.svg?branch=master)](https://travis-ci.org/gushers/candybar)
 
-A simple `<canvas>` rendering engine and collection of classes and utils. And by "engine" I mean about as advanced as a broken scooter 🛴
+A simple `<canvas>` rendering engine and collection of classes and utils. And by "engine" I mean about as advanced as a broken scooter 🛴 on fire 🔥
 
 🚨 **This is an alpha release**
 
@@ -8,13 +8,13 @@ _Really, don't use this thing for anything yet._
 
 ## Getting started
 
-Install it, duh.
+First, install it
 
 ```
 yarn add @gush/candybar
 ```
 
-Then create a canvas.
+then create a canvas
 
 ```javascript
 import { Canvas } from '@gush/candybar';
@@ -24,7 +24,7 @@ const canvas = new Canvas({
 });
 ```
 
-This will create a beautiful blank canvas. 🙌🏻
+which will leave you with a beautiful blank canvas. 🙌🏻
 
 ## Canvas options
 
@@ -34,6 +34,7 @@ Canvas classes can be created with a few options:
 - `container`
 - `hasPointer`
 - `entities`
+- `pauseInBackground`
 
 ```javascript
 new Canvas({
@@ -44,6 +45,8 @@ new Canvas({
     container: document.getElementById('container'),
     // Indicates if the canvas should capture mouse/touch pointer events.
     hasPointer: true,
+    // Indicates if the engine should pause when the window is not in focus
+    pauseInBackground: true,
     // Entities are objects that will be renedered by the Canvas engine.
     entities: [...things],
 });
