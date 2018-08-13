@@ -21,5 +21,6 @@ export default class Segment {
         this.p1 = this.p1.move(...args);
         this.p2 = this.p2.move(...args);
         this.bounds.move(...args);
+        return this;
     }
 }

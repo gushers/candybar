@@ -15,4 +15,32 @@ describe('Segment class', () => {
             })
         );
     });
+
+    it('moves', () => {
+        const segment = new Segment(new Point(0, 50), new Point(50, 75));
+        expect(segment.move(10, 10)).toEqual(
+            expect.objectContaining({
+                p1: expect.objectContaining({
+                    x: 10,
+                    y: 60,
+                }),
+                p2: expect.objectContaining({
+                    x: 60,
+                    y: 85,
+                }),
+                a: expect.objectContaining({
+                    x: 10,
+                    y: 60,
+                }),
+                b: expect.objectContaining({
+                    x: 60,
+                    y: 85,
+                }),
+                bounds: expect.objectContaining({
+                    x: 10,
+                    y: 60,
+                }),
+            })
+        );
+    });
 });
