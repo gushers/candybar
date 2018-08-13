@@ -71,6 +71,29 @@ describe('Bounds class', () => {
         );
     });
 
+    it('updates properties when moved', () => {
+        const bounds = new Bounds(50, 50, 100, 100);
+        bounds.moveTo(10, 10);
+        expect(bounds).toEqual(
+            expect.objectContaining({
+                x: 10,
+                y: 10,
+                w: 100,
+                h: 100,
+                hw: 50,
+                hh: 50,
+                center: expect.objectContaining({
+                    x: 60,
+                    y: 60,
+                }),
+                position: expect.objectContaining({
+                    x: 10,
+                    y: 10,
+                }),
+            })
+        );
+    });
+
     it('gets intersections with other bounds', () => {
         const bounds1 = new Bounds(0, 0, 100, 100);
         const bounds2 = new Bounds(20, 20, 100, 100);

@@ -25,6 +25,14 @@ class Bounds {
         return this;
     }
 
+    moveTo(x, y) {
+        this.x = x;
+        this.y = y;
+        this.center.moveTo(x + this.hw, y + this.hh);
+        this.position.moveTo(x, y);
+        return this;
+    }
+
     intersectsWith(bounds) {
         return doBoxesIntersect(this, bounds);
     }
