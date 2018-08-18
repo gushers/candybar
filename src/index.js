@@ -5,6 +5,7 @@ import Point from './modules/Point';
 import PointPhysics from './modules/PointPhysics';
 import Pointer from './modules/Pointer';
 import Segment from './modules/Segment';
+import Stick from './modules/Stick';
 import Velocity from './modules/Velocity';
 import * as utils from './utils';
 
@@ -16,6 +17,7 @@ export default {
     PointPhysics,
     Pointer,
     Segment,
+    Stick,
     Velocity,
     utils,
 };
