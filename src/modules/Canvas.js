@@ -21,6 +21,9 @@ class Canvas {
         // tick counter
         this.tick = 0;
 
+        // request animation frame id
+        this.rafId = null;
+
         // entities to be drawn on the canvas
         this.entities = entities;
 
@@ -120,7 +123,9 @@ class Canvas {
     }
 
     stop = () => {
+        cancelAnimationFrame(this.rafId);
         this.paused = true;
+        this.rafId = null;
     };
 
     start = () => {
@@ -142,7 +147,9 @@ class Canvas {
 
         ++this.tick;
 
-        !this.paused && window.requestAnimationFrame(this.render);
+        if (!this.paused) {
+            this.rafId = window.requestAnimationFrame(this.render);
+        }
     };
 }
 
