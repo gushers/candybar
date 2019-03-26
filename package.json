@@ -1,6 +1,6 @@
 {
   "name": "@gush/candybar",
-  "version": "0.0.0-alpha34",
+  "version": "0.0.0-alpha35",
   "description": "🍫",
   "main": "dist/index.js",
   "scripts": {
