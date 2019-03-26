@@ -66,6 +66,12 @@ class MyThing {
     setup = ({ canvas }) => {
         // setup will be called once before the first draw and is provided the class context
         this.w = canvas.width / 10;
+        window.addEventListener('resize', handleResize);
+    };
+
+    destroy = () => {
+        // called when destroy is called on the Canvas
+        window.removeEventListener('resize', handleResize);
     };
 
     draw = ({ ctx }) => {

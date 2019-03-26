@@ -38,12 +38,7 @@ class Canvas {
     }
 
     setupListeners() {
-        window.addEventListener('resize', event => {
-            this.setCanvasSize();
-            this.setPointer();
-            this.setContainerRect();
-            this.resizeEntities(event);
-        });
+        window.addEventListener('resize', this.handleResize);
 
         if (this.pauseInBackground) {
             window.addEventListener('blur', this.stop);
@@ -51,10 +46,27 @@ class Canvas {
         }
     }
 
+    destroy() {
+        window.removeEventListener('blur', this.stop);
+        window.removeEventListener('focus', this.start);
+        window.removeEventListener('resize', this.handleResize);
+
+        this.entities.forEach(({ destroy }) => {
+            destroy && destroy(this);
+        });
+    }
+
     setContainerRect() {
         if (!this.container) return;
         this.containerRect = this.container.getBoundingClientRect();
     }
+
+    handleResize = event => {
+        this.setCanvasSize();
+        this.setPointer();
+        this.setContainerRect();
+        this.resizeEntities(event);
+    };
 
     setPointer() {
         // track mouse/touch movement
@@ -122,13 +134,18 @@ class Canvas {
         this.entities = this.entities.filter(({ dead = false }) => !dead);
     }
 
-    stop = () => {
-        cancelAnimationFrame(this.rafId);
-        this.paused = true;
+    cancelRaf() {
+        this.rafId && cancelAnimationFrame(this.rafId);
         this.rafId = null;
+    }
+
+    stop = () => {
+        this.cancelRaf();
+        this.paused = true;
     };
 
     start = () => {
+        this.cancelRaf();
         this.paused = false;
         this.render();
     };
