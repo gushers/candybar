@@ -51,6 +51,7 @@ class Canvas {
         window.removeEventListener('focus', this.start);
         window.removeEventListener('resize', this.handleResize);
 
+        this.cancelRaf();
         this.entities.forEach(({ destroy }) => {
             destroy && destroy(this);
         });
