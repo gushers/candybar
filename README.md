@@ -35,6 +35,7 @@ Canvas classes can be created with a few options:
 - `hasPointer`
 - `entities`
 - `pauseInBackground`
+- `dpr`
 
 ```javascript
 new Canvas({
@@ -49,6 +50,8 @@ new Canvas({
     pauseInBackground: true,
     // Entities are objects that will be renedered by the Canvas engine.
     entities: [...things],
+    // Override Device Pixel Ratio. Defaults based on device and falls back to 1.
+    dpr: 1,
 });
 ```
 

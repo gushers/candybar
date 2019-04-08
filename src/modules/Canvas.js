@@ -8,13 +8,14 @@ class Canvas {
         entities = [],
         hasPointer,
         pauseInBackground,
+        dpr,
     }) {
         this.canvas = canvas;
         this.container = container;
         this.hasPointer = hasPointer;
         this.pauseInBackground = pauseInBackground;
 
-        this.dpr = window.devicePixelRatio || 1;
+        this.dpr = dpr || window.devicePixelRatio || 1;
         this.ctx = canvas.getContext('2d');
         this.ctx.scale(this.dpr, this.dpr);
 
@@ -81,6 +82,7 @@ class Canvas {
                     scrollX,
                     scrollY,
                 },
+                dpr: this.dpr,
             });
     }
 

@@ -1,13 +1,13 @@
 import Point from './Point';
 
 class Pointer {
-    constructor({ containerRect, scrollPosition }) {
+    constructor({ containerRect, scrollPosition, dpr }) {
         // cached getBoundingRect call
         this.containerRect = containerRect;
         // cached position from when the rect is got
         this.scrollPosition = scrollPosition;
 
-        this.dpr = window.devicePixelRatio || 1;
+        this.dpr = dpr || window.devicePixelRatio || 1;
         this.delta;
         this.lastPosition = null;
         this.position = new Point(null, null);
