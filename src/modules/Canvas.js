@@ -40,6 +40,7 @@ class Canvas {
 
     setupListeners() {
         window.addEventListener('resize', this.handleResize);
+        window.addEventListener('load', this.handleResize);
 
         if (this.pauseInBackground) {
             window.addEventListener('blur', this.stop);
