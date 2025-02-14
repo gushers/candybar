@@ -19,7 +19,7 @@ class Pointer {
     }
 
     addListeners() {
-        ['mousemove', 'touchmove', 'touchendoutside'].forEach((event, touch) => {
+        ['mousemove', 'touchmove'].forEach((event, touch) => {
             window.addEventListener(
                 event,
                 e => {
