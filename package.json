@@ -7,7 +7,7 @@
     "start": "",
     "test": "NODE_ENV='test' jest",
     "test:watch": "NODE_ENV='test' jest --watch",
-    "build": "npm run test && NODE_ENV='production' rollup -c --dir dist",
+    "build": "npm run test && NODE_ENV='production' rollup -c --bundleConfigAsCjs",
     "docs": "documentation build src/index.js -o docs/docs.md -f md",
     "prepublishOnly": "npm run build"
   },
@@ -27,8 +27,8 @@
     "documentation": "8.1.0",
     "flow-bin": "^0.78.0",
     "jest": "^23.5.0",
-    "rollup": "^0.63.5",
     "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup": "^4.34.0"
   }
 }

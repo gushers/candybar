@@ -19,6 +19,14 @@ class Canvas {
         this.ctx = canvas.getContext('2d');
         this.ctx.scale(this.dpr, this.dpr);
 
+        this.framesPerSecond = 60;
+        this.interval = Math.floor(1000 / this.framesPerSecond); // rounding down since our code will rarely run at the exact interval
+        this.startTime = performance.now();
+        this.previousTime = this.startTime;
+        this.currentTime = 0;
+        this.deltaTime = 0;
+
+
         // tick counter
         this.tick = 0;
 
@@ -159,14 +167,21 @@ class Canvas {
     }
 
     // Main loop
-    render = () => {
-        // Draw and Update items here.
-        this.entities.forEach(({ draw, update }) => {
-            draw && draw(this);
-            update && update(this);
-        });
+    render = (timestamp) => {
+        this.currentTime = timestamp;
+        this.deltaTime = this.currentTime - this.previousTime;
 
-        ++this.tick;
+        if (this.deltaTime > this.interval) {
+            this.previousTime = this.currentTime - (this.deltaTime % this.interval);
+
+            // Draw and Update items here.
+            this.entities.forEach(({ draw, update }) => {
+                draw && draw(this);
+                update && update(this);
+            });
+
+            ++this.tick;
+        }
 
         if (!this.paused) {
             this.rafId = window.requestAnimationFrame(this.render);
