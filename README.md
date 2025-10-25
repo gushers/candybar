@@ -1,4 +1,4 @@
-# Candybar 🍫 [![Build Status](https://travis-ci.org/gushers/candybar.svg?branch=master)](https://travis-ci.org/gushers/candybar)
+# Candybar 🍫 [![Test and Build](https://github.com/gushers/candybar/actions/workflows/test.yml/badge.svg)](https://github.com/gushers/candybar/actions/workflows/test.yml)
 
 A simple `<canvas>` rendering engine and collection of classes and utils. And by "engine" I mean about as advanced as a broken scooter 🛴 on fire 🔥
 
