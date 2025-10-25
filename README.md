@@ -11,7 +11,7 @@ _Really, don't use this thing for anything yet._
 First, install it
 
 ```
-yarn add @gush/candybar
+npm install @gush/candybar
 ```
 
 then create a canvas
