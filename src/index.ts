@@ -1,26 +1,12 @@
-import Bounds from './modules/Bounds';
-import Canvas from './modules/Canvas';
-import Entity from './modules/Entity';
-import Point from './modules/Point';
-import PointPhysics from './modules/PointPhysics';
-import Pointer from './modules/Pointer';
-import Segment from './modules/Segment';
-import Spring from './modules/Spring';
-import Stick from './modules/Stick';
-import Velocity from './modules/Velocity';
-import * as utils from './utils';
-
-export default {
-    Bounds,
-    Canvas,
-    Entity,
-    Point,
-    PointPhysics,
-    Pointer,
-    Segment,
-    Spring,
-    Stick,
-    Velocity,
-    utils,
-};
+export { default as Bounds } from './modules/Bounds';
+export { default as Canvas } from './modules/Canvas';
+export { default as Entity } from './modules/Entity';
+export { default as Point } from './modules/Point';
+export { default as PointPhysics } from './modules/PointPhysics';
+export { default as Pointer } from './modules/Pointer';
+export { default as Segment } from './modules/Segment';
+export { default as Spring } from './modules/Spring';
+export { default as Stick } from './modules/Stick';
+export { default as Velocity } from './modules/Velocity';
+export * as utils from './utils';
 

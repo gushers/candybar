@@ -1,5 +1,5 @@
 import Point from './Point';
-import { doBoxesIntersect } from '../utils';
+import { doBoxesIntersect } from '../utils/doBoxesIntersect';
 
 class Bounds {
     x: number;
