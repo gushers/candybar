@@ -2,7 +2,16 @@ import Point from './Point';
 import { doBoxesIntersect } from '../utils';
 
 class Bounds {
-    constructor(x, y, w, h) {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    hw: number;
+    hh: number;
+    center: Point;
+    position: Point;
+
+    constructor(x: number, y: number, w: number, h: number) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -13,11 +22,11 @@ class Bounds {
         this.position = new Point(x, y);
     }
 
-    get params() {
+    get params(): [number, number, number, number] {
         return [this.x, this.y, this.w, this.h];
     }
 
-    move(x, y) {
+    move(x: number, y: number): this {
         this.x += x;
         this.y += y;
         this.center.move(x, y);
@@ -25,7 +34,7 @@ class Bounds {
         return this;
     }
 
-    moveTo(x, y) {
+    moveTo(x: number, y: number): this {
         this.x = x;
         this.y = y;
         this.center.moveTo(x + this.hw, y + this.hh);
@@ -33,11 +42,11 @@ class Bounds {
         return this;
     }
 
-    intersectsWith(bounds) {
+    intersectsWith(bounds: Bounds): boolean {
         return doBoxesIntersect(this, bounds);
     }
 
-    offsetOuter(offset) {
+    offsetOuter(offset: number): Bounds {
         const [x, y, w, h] = this.params;
         return new Bounds(
             x - offset,
@@ -47,7 +56,7 @@ class Bounds {
         );
     }
 
-    offsetInner(offset) {
+    offsetInner(offset: number): Bounds {
         const [x, y, w, h] = this.params;
         return new Bounds(
             x + offset,
@@ -59,3 +68,4 @@ class Bounds {
 }
 
 export default Bounds;
+

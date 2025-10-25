@@ -1,12 +1,25 @@
+import Point from './Point';
+
+interface StickConfig {
+    p1: Point;
+    p2: Point;
+    iterations?: number;
+}
+
 export default class Stick {
-    constructor({ p1, p2, iterations = 1 }) {
+    p1: Point;
+    p2: Point;
+    restingDist: number;
+    iterations: null[];
+
+    constructor({ p1, p2, iterations = 1 }: StickConfig) {
         this.p1 = p1;
         this.p2 = p2;
         this.restingDist = p1.distance(p2);
         this.iterations = Array(iterations).fill(null); // more solutions per frame, more accurate
     }
 
-    solveLinks() {
+    solveLinks(): void {
         // verlet relax constraints solution
         // solve multiple time for accuracy
         const { restingDist, p1, p2, iterations } = this;
@@ -40,8 +53,9 @@ export default class Stick {
         });
     }
 
-    update = () => {
+    update = (): void => {
         if (this.p1.isFixed && this.p2.isFixed) return;
         this.solveLinks();
     };
 }
+

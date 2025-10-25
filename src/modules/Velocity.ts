@@ -1,35 +1,38 @@
 class Velocity {
-    constructor(vx, vy) {
+    vx: number;
+    vy: number;
+
+    constructor(vx: number, vy: number) {
         this.vx = vx;
         this.vy = vy;
     }
 
-    flip() {
+    flip(): this {
         // reflection on both axis
         this.vx *= -1;
         this.vy *= -1;
         return this;
     }
 
-    flipX() {
+    flipX(): this {
         // reflection on x axis
         this.vx *= -1;
         return this;
     }
 
-    flipY() {
+    flipY(): this {
         // reflection on y axis
         this.vy *= -1;
         return this;
     }
 
-    multiply(scalar) {
+    multiply(scalar: number): this {
         this.vx *= scalar;
         this.vy *= scalar;
         return this;
     }
 
-    divide(scalar) {
+    divide(scalar: number): this {
         this.vx /= scalar;
         this.vy /= scalar;
         return this;
@@ -37,3 +40,4 @@ class Velocity {
 }
 
 export default Velocity;
+

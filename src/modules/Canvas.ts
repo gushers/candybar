@@ -1,7 +1,45 @@
 import Bounds from './Bounds';
 import Pointer from './Pointer';
 
+interface Entity {
+    setup?: (canvas: Canvas) => void;
+    resize?: (canvas: Canvas, event?: Event) => void;
+    draw?: (canvas: Canvas) => void;
+    update?: (canvas: Canvas) => void;
+    destroy?: (canvas: Canvas) => void;
+    dead?: boolean;
+}
+
+interface CanvasConfig {
+    canvas: HTMLCanvasElement;
+    container?: HTMLElement;
+    entities?: Entity[];
+    hasPointer?: boolean;
+    pauseInBackground?: boolean;
+    dpr?: number;
+}
+
 class Canvas {
+    canvas: HTMLCanvasElement;
+    container?: HTMLElement;
+    hasPointer?: boolean;
+    pauseInBackground?: boolean;
+    dpr: number;
+    ctx: CanvasRenderingContext2D;
+    framesPerSecond: number;
+    interval: number;
+    startTime: number;
+    previousTime: number;
+    currentTime: number;
+    deltaTime: number;
+    tick: number;
+    rafId: number | null;
+    entities: Entity[];
+    containerRect?: DOMRect;
+    pointer?: Pointer | false;
+    bounds!: Bounds;
+    paused?: boolean;
+
     constructor({
         canvas,
         container,
@@ -9,14 +47,14 @@ class Canvas {
         hasPointer,
         pauseInBackground,
         dpr,
-    }) {
+    }: CanvasConfig) {
         this.canvas = canvas;
         this.container = container;
         this.hasPointer = hasPointer;
         this.pauseInBackground = pauseInBackground;
 
         this.dpr = dpr || window.devicePixelRatio || 1;
-        this.ctx = canvas.getContext('2d');
+        this.ctx = canvas.getContext('2d')!;
         this.ctx.scale(this.dpr, this.dpr);
 
         this.framesPerSecond = 60;
@@ -25,7 +63,6 @@ class Canvas {
         this.previousTime = this.startTime;
         this.currentTime = 0;
         this.deltaTime = 0;
-
 
         // tick counter
         this.tick = 0;
@@ -46,7 +83,7 @@ class Canvas {
         this.render();
     }
 
-    setupListeners() {
+    setupListeners(): void {
         window.addEventListener('resize', this.handleResize);
         window.addEventListener('load', this.handleResize);
 
@@ -56,7 +93,7 @@ class Canvas {
         }
     }
 
-    destroy() {
+    destroy(): void {
         window.removeEventListener('blur', this.stop);
         window.removeEventListener('focus', this.start);
         window.removeEventListener('resize', this.handleResize);
@@ -67,19 +104,19 @@ class Canvas {
         });
     }
 
-    setContainerRect() {
+    setContainerRect(): void {
         if (!this.container) return;
         this.containerRect = this.container.getBoundingClientRect();
     }
 
-    handleResize = event => {
+    handleResize = (event?: Event): void => {
         this.setCanvasSize();
         this.setPointer();
         this.setContainerRect();
         this.resizeEntities(event);
     };
 
-    setPointer() {
+    setPointer(): void {
         // track mouse/touch movement
         const scrollX = window.pageXOffset;
         const scrollY = window.pageYOffset;
@@ -95,7 +132,7 @@ class Canvas {
             });
     }
 
-    setCanvasSize() {
+    setCanvasSize(): void {
         let { innerWidth: w, innerHeight: h } = window;
 
         // sized to the container if available
@@ -112,24 +149,24 @@ class Canvas {
         this.canvas.style.width = w + 'px';
         this.canvas.style.height = h + 'px';
         this.canvas.style.position = 'absolute';
-        this.canvas.style.top = 0;
-        this.canvas.style.left = 0;
+        this.canvas.style.top = '0';
+        this.canvas.style.left = '0';
         this.bounds = new Bounds(0, 0, w2, h2);
     }
 
-    setupEntities() {
+    setupEntities(): void {
         this.entities.forEach(({ setup }) => {
             setup && setup(this);
         });
     }
 
-    resizeEntities(event) {
+    resizeEntities(event?: Event): void {
         this.entities.forEach(({ resize }) => {
             resize && resize(this, event);
         });
     }
 
-    addEntity = newEntity => {
+    addEntity = (newEntity: Entity): number => {
         this.entities = [...this.entities, newEntity];
         // call setup since this is new
         newEntity.setup && newEntity.setup(this);
@@ -137,38 +174,38 @@ class Canvas {
         return this.entities.length - 1;
     };
 
-    removeEntity(deleteIndex) {
+    removeEntity(deleteIndex: number): Entity[] {
         this.entities = this.entities.filter((el, i) => i !== deleteIndex);
         return this.entities;
     }
 
-    removeDead() {
+    removeDead(): void {
         this.entities = this.entities.filter(({ dead = false }) => !dead);
     }
 
-    cancelRaf() {
+    cancelRaf(): void {
         this.rafId && cancelAnimationFrame(this.rafId);
         this.rafId = null;
     }
 
-    stop = () => {
+    stop = (): void => {
         this.cancelRaf();
         this.paused = true;
     };
 
-    start = () => {
+    start = (): void => {
         this.cancelRaf();
         this.paused = false;
         this.render();
     };
 
-    clearCanvas({ ctx, bounds }) {
+    clearCanvas({ ctx, bounds }: { ctx: CanvasRenderingContext2D; bounds: Bounds }): void {
         ctx.clearRect(...bounds.params);
     }
 
     // Main loop
-    render = (timestamp) => {
-        this.currentTime = timestamp;
+    render = (timestamp?: number): void => {
+        this.currentTime = timestamp || 0;
         this.deltaTime = this.currentTime - this.previousTime;
 
         if (this.deltaTime > this.interval) {
@@ -190,3 +227,4 @@ class Canvas {
 }
 
 export default Canvas;
+

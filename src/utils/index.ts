@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Gets a random float between a given min and max number.
  */
@@ -25,8 +23,8 @@ export function lerp(start: number, end: number, amount: number): number {
  * Determines if two axis-aligned boxes intersect using AABB.
  */
 export function doBoxesIntersect(
-    a: { x: number, y: number, w: number, h: number },
-    b: { x: number, y: number, w: number, h: number }
+    a: { x: number; y: number; w: number; h: number },
+    b: { x: number; y: number; w: number; h: number }
 ): boolean {
     if (
         a.x < b.x + b.w &&
@@ -68,3 +66,4 @@ export function cycle(value: number, total: number): number {
 export function clamp(number: number, min: number, max: number): number {
     return Math.max(min, Math.min(number, max));
 }
+

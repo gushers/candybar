@@ -1,6 +1,29 @@
 import Point from './Point';
 
+interface PointPhysicsConfig {
+    x: number;
+    y: number;
+    mass: number;
+    isFixed?: boolean;
+    pointerStrength?: number;
+    pointerRadius?: number;
+}
+
+interface CanvasContext {
+    pointer?: any;
+    tick?: number;
+}
+
 class PointPhysics extends Point {
+    vx: number;
+    vy: number;
+    fx: number;
+    fy: number;
+    mass: number;
+    isFixed?: boolean;
+    pointerRadius: number;
+    pointerStrength: number;
+
     constructor({
         x,
         y,
@@ -8,7 +31,7 @@ class PointPhysics extends Point {
         isFixed,
         pointerStrength = 0.25,
         pointerRadius = 100,
-    }) {
+    }: PointPhysicsConfig) {
         super(x, y);
         this.vx = 0; // velocity x
         this.vy = 0; // velocity y
@@ -22,12 +45,12 @@ class PointPhysics extends Point {
         this.pointerStrength = pointerStrength; // 0 - 1
     }
 
-    applyForce(x, y) {
+    applyForce(x: number, y: number): void {
         this.fx += x;
         this.fy += y;
     }
 
-    applyForceFromMouse(pointer) {
+    applyForceFromMouse(pointer: any): void {
         const distance = this.distance(pointer.position);
 
         if (distance < this.pointerRadius) {
@@ -39,7 +62,7 @@ class PointPhysics extends Point {
         }
     }
 
-    solveVelocity() {
+    solveVelocity(): void {
         if (this.fx === 0 && this.fy === 0) return;
 
         // acceleration = force / mass;
@@ -58,9 +81,9 @@ class PointPhysics extends Point {
         this.fy = 0;
     }
 
-    update = ({ pointer, tick }) => {
+    update = ({ pointer, tick }: CanvasContext): void => {
         if (this.isFixed) return;
-        if (this.pointerRadius && this.pointerStrength) {
+        if (this.pointerRadius && this.pointerStrength && pointer) {
             this.applyForceFromMouse(pointer);
         }
         this.solveVelocity();
@@ -68,3 +91,4 @@ class PointPhysics extends Point {
 }
 
 export default PointPhysics;
+
