@@ -2,7 +2,14 @@ import Point from './Point';
 import Bounds from './Bounds';
 
 export default class Segment {
-    constructor(p1, p2) {
+    p1: Point;
+    p2: Point;
+    a: Point;
+    b: Point;
+    points: Point[];
+    bounds: Bounds;
+
+    constructor(p1: Point, p2: Point) {
         this.p1 = p1;
         this.p2 = p2;
         // alias
@@ -17,10 +24,11 @@ export default class Segment {
         this.bounds = new Bounds(tl.x, tl.y, dx, dy);
     }
 
-    move(...args) {
+    move(...args: [number, number]): this {
         this.p1 = this.p1.move(...args);
         this.p2 = this.p2.move(...args);
         this.bounds.move(...args);
         return this;
     }
 }
+

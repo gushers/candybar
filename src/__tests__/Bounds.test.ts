@@ -114,3 +114,4 @@ describe('Bounds class', () => {
         expect(bounds1.intersectsWith(bounds9)).toEqual(true);
     });
 });
+

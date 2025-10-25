@@ -3,32 +3,33 @@
   "version": "0.0.2",
   "description": "🍫",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "",
     "test": "NODE_ENV='test' jest",
     "test:watch": "NODE_ENV='test' jest --watch",
     "build": "npm run test && NODE_ENV='production' rollup -c --bundleConfigAsCjs",
-    "docs": "documentation build src/index.js -o docs/docs.md -f md",
+    "docs": "documentation build src/index.ts -o docs/docs.md -f md",
     "prepublishOnly": "npm run build"
   },
   "author": "J Scott Smith",
   "license": "ISC",
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": ["ts", "js"],
+    "testMatch": ["**/__tests__/**/*.test.ts"]
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.5",
     "documentation": "8.1.0",
-    "flow-bin": "^0.78.0",
-    "jest": "^23.5.0",
+    "jest": "^29.7.0",
     "rollup": "^4.34.0",
-    "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "ts-jest": "^29.2.5",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.3"
   }
 }

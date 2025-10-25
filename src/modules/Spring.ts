@@ -1,6 +1,31 @@
 import Point from './Point';
 
+interface SpringConfig {
+    x: number;
+    y: number;
+    isFixed?: boolean;
+    mass?: number;
+    elasticity?: number;
+    damping?: number;
+}
+
+interface CanvasContext {
+    pointer?: any;
+}
+
 class Spring extends Point {
+    ox: number;
+    oy: number;
+    vx: number;
+    vy: number;
+    fx: number;
+    fy: number;
+    isFixed?: boolean;
+    mass: number;
+    elasticity: number;
+    damping: number;
+    attractors: Point[];
+
     constructor({
         x,
         y,
@@ -8,7 +33,7 @@ class Spring extends Point {
         mass = 10,
         elasticity = 0.4,
         damping = 0.05,
-    }) {
+    }: SpringConfig) {
         super(x, y);
         this.ox = x; // original origin x, never changes
         this.oy = y; // original origin y, never changes
@@ -23,23 +48,20 @@ class Spring extends Point {
         this.mass = mass;
         this.elasticity = elasticity;
         this.damping = damping;
+        this.attractors = [];
     }
 
-    applyForce(x, y) {
+    applyForce(x: number, y: number): void {
         this.fx += x;
         this.fy += y;
     }
 
-    attractors = [];
-
-    addAttractor(point) {
+    addAttractor(point: Point): void {
         this.attractors = [...this.attractors, point];
     }
 
-    setAdjacentForces() {
-        this.attractors.forEach((point, i) => {
-            const { x, y } = point;
-
+    setAdjacentForces(): void {
+        this.attractors.forEach((point) => {
             const force = { x: 0, y: 0 }; // prev point force
             const { x: x1, y: y1 } = point;
             const { x: x2, y: y2 } = this;
@@ -52,7 +74,7 @@ class Spring extends Point {
         });
     }
 
-    setSpringForce() {
+    setSpringForce(): void {
         // force to origin, difference multiplied by elasticity constant
         const fx = (this.ox - this.x) * this.elasticity;
         const fy = (this.oy - this.y) * this.elasticity;
@@ -62,7 +84,7 @@ class Spring extends Point {
         this.fy += fy;
     }
 
-    solveVelocity() {
+    solveVelocity(): void {
         if (this.fx === 0 && this.fy === 0) return;
 
         // acceleration = force / mass;
@@ -82,7 +104,7 @@ class Spring extends Point {
         this.fy = 0;
     }
 
-    update = ({ pointer }) => {
+    update = ({ pointer }: CanvasContext): void => {
         if (this.isFixed) return;
         this.setSpringForce();
         this.setAdjacentForces();
@@ -91,3 +113,4 @@ class Spring extends Point {
 }
 
 export default Spring;
+

@@ -64,3 +64,4 @@ describe('Point class', () => {
         expect(a.angleRadians(c)).toEqual(-Math.PI / 2);
     });
 });
+
