@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "🍫",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "start": "",
     "test": "NODE_ENV='test' jest",

@@ -24,6 +24,17 @@ const canvas = new Canvas({
 });
 ```
 
+You can import only what you need for optimal tree-shaking:
+
+```javascript
+// Import individual modules
+import { Point, Bounds, Canvas } from '@gush/candybar';
+
+// Or import utilities
+import { utils } from '@gush/candybar';
+const distance = utils.lerp(0, 100, 0.5);
+```
+
 which will leave you with a beautiful blank canvas. 🙌🏻
 
 ## Canvas options
